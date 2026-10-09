@@ -11,7 +11,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def parse_arguments():
-    
+
     parser = argparse.ArgumentParser(
         description="Plot any of GDP, CO2 from Fires, and Year."
     )
@@ -82,10 +82,10 @@ def main():
     args = parse_arguments()
 
     column_indices = {
-    "year": 0,
-    "fires": 1,
-    "gdp": 2
-    }
+                      "year": 0,
+                      "fires": 1,
+                      "gdp": 2
+                      }
 
     titles = ["Year", "CO2 Due To Fires", "GDP"]
 
@@ -103,8 +103,6 @@ def main():
 
         x_vals = data[x_axis]
         y_vals = data[y_axis]
-
-
 
         fig = create_plot(
             x_vals,
