@@ -77,7 +77,7 @@ class TestGetData(unittest.TestCase):
     def test_header(self):
         file = Path(__file__).resolve().parent.parent / "data" / "testAgroFood.csv"
 
-        data = fire_gdp.get_data(file, header=True)
+        data = fire_gdp.get_data(file, return_header=True)
 
         rows = len(data)
         columns = len(data[0])
