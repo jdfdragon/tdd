@@ -9,6 +9,17 @@ curl -L "https://docs.google.com/uc?export=download&id=1AsXP_OGs1O_TDeXiZjk3fYV1
 curl -L "https://docs.google.com/uc?export=download&id=19YEPysdnK7VCXuAe9Og9pwYkNT5CbQzr" -o data/IMF_GDP.csv
 ```
 
+## Usage
+
+To run your own analysis of the data, first download the files above and place them in a "data" directory within the main repo. Then, use the following syntax within the main repo to generate plots:
+
+'''
+python src/plot_fire_gdp.py --out "path/to/gen/image" \
+--co2 "path/to/emission/file" --gdp "path/to/gdp/file" \
+--country "Country" --axisX {one of}['year', 'fires', 'gdp'] \
+--axisY {one of}['year', 'fires', 'gdp']
+'''
+
 ## Analysis
 
 I performed a few analyses of the GDP/Fires data. Fistly, I chose three countries with dramatically different environments and yet similar GDPs. From the World Bank (https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?most_recent_value_desc=true), I was able to tell that Brazil, Spain, and the Republic of Korea (South Korea) all had comparable GDPs when converted to USD, but they have very different climates and sizes. South Korea is an incredibly densly populated, small country that industrialized relatively recently. Spain is an old European colonial power. The majority of Brazil is taken up by the largest rainforest in the world. I thought that comparing their GDP growth vs forest fire CO2 emissions may be interesting.
