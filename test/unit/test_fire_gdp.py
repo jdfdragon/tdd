@@ -39,7 +39,7 @@ class TestGetData(unittest.TestCase):
 
     def test_namePresent(self):
         file = (Path(__file__).resolve().parent.parent
-                / "data" / "testAgroFood.csv")
+                / "data" / "testAgrofood.csv")
 
         data = fire_gdp.get_data(file)
 
@@ -59,7 +59,7 @@ class TestGetData(unittest.TestCase):
 
     def test_query(self):
         file = (Path(__file__).resolve().parent.parent
-                / "data" / "testAgroFood.csv")
+                / "data" / "testAgrofood.csv")
 
         data = fire_gdp.get_data(file, 0, "Afghanistan")
 
@@ -69,18 +69,18 @@ class TestGetData(unittest.TestCase):
 
     def test_noColumn(self):
         file = (Path(__file__).resolve().parent.parent
-                / "data" / "testAgroFood.csv")
+                / "data" / "testAgrofood.csv")
         self.assertRaises(ValueError, fire_gdp.get_data,
                           file, None, "Afghanistan")
 
     def test_noValue(self):
         file = (Path(__file__).resolve().parent.parent
-                / "data" / "testAgroFood.csv")
+                / "data" / "testAgrofood.csv")
         self.assertRaises(ValueError, fire_gdp.get_data, file, 0)
 
     def test_header(self):
         file = (Path(__file__).resolve().parent.parent
-                / "data" / "testAgroFood.csv")
+                / "data" / "testAgrofood.csv")
 
         data = fire_gdp.get_data(file, return_header=True)
 
@@ -97,7 +97,7 @@ class TestGetFireGDPYearData(unittest.TestCase):
 
     def test_main(self):
         co2file = (Path(__file__).resolve().parent.parent
-                   / "data" / "testAgroFood.csv")
+                   / "data" / "testAgrofood.csv")
         GDPfile = (Path(__file__).resolve().parent.parent
                    / "data" / "testIMF.csv")
 
