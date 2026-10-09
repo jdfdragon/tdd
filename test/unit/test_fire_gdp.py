@@ -70,7 +70,9 @@ class TestGetData(unittest.TestCase):
         file = Path(__file__).resolve().parent.parent / "data" / "testAgroFood.csv"
         self.assertRaises(ValueError, fire_gdp.get_data, file, None, "Afghanistan")
 
-
+    def test_noValue(self):
+        file = Path(__file__).resolve().parent.parent / "data" / "testAgroFood.csv"
+        self.assertRaises(ValueError, fire_gdp.get_data, file, 0)
 
 
 class TestGetFireGDPYearData(unittest.TestCase):
