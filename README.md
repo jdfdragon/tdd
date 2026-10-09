@@ -33,3 +33,13 @@ Even though we couldn't compare the scales of GDP between countries, we can comp
 ![Spain, CO2 from Fires vs GDP](images/spain_fires_gdp.png)
 
 Finally, a comparison between CO2 emissions and GDP. There is no obvious pattern from the data. I organized it as such because GDP monotonically increases for two of the countries we are comparing, making the graphs look similar to our Fires vs Time charts. There may be a slight decline in emissions in Brazil, but GDP may not be the leading cause. Reductions in the number of forrests and global environmental regulations may impact these numbers. While increasing GDP may increase the efficacy of the local forest service to fight and control fires, it is not strongly supported from the data here that there is a causal link. Korea has no link between fires and GDP, but the small penninsula's low surface area leads to high variance in the number of fires per year, obscuring data. While Spain shows a clear correlation between CO2 emissions from fires and GDP, it also is the only country to experience an economic downturn in the timeframe given. Comparing the Emissions vs Time and Emissions vs GDP presents a stronger case that Time is the key variable to reducing fires, not wealth. If there was a direct causal link, we would expect a jump in CO2 emissions around 2008, which we do not see.
+
+## Methods
+
+To generate the plots listed, I used the following code workflow. The workflow for Brazil is presented here, and generating the other plots is entirely analogous.
+
+'''
+python src/plot_fire_gdp.py --out brazil_gdp_time.png --axisX "year" --axisY "gdp" --country "Brazil"
+python src/plot_fire_gdp.py --out brazil_fires_time.png --axisX "year" --axisY "fires" --country "Brazil"
+python src/plot_fire_gdp.py --out brazil_fires_gdp.png --axisX "gdp" --axisY "fires" --country "Brazil"
+'''
