@@ -48,6 +48,15 @@ class TestGetData(unittest.TestCase):
         columns = len(data[0])
         self.assertEqual([rows, columns], [6, 31])
 
+    def test_namePresent2(self):
+        file = Path(__file__).resolve().parent.parent / "data" / "testIMF.csv"
+        
+        data = fire_gdp.get_data(file)
+
+        rows = len(data)
+        columns = len(data[0])
+        self.assertEqual([rows, columns], [2, 74])
+
 
 class TestGetFireGDPYearData(unittest.TestCase):
 
