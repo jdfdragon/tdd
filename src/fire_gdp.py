@@ -41,5 +41,26 @@ def get_column_index(header, column_name):
 
 
 def get_fire_gdp_year_data(co2_file, gdp_file, country):
-    pass
+
+    co2Data = get_data(co2_file, 0, country, True)
+
+    gdpData = get_data(gdp_file, 0, country, True)
+
+    firesIndex = get_column_index(co2Data[0], "Forest fires")
+
+    yearIndex = get_column_index(co2Data[0], "Year")
+
+    data = []
+
+    for row in co2Data[1:]:
+        year = row[yearIndex]
+        fires = row[firesIndex]
+        gdpIndex = get_column_index(gdpData[0], year)
+        gdp = gdpData[1][gdpIndex]
+        if gdp:
+            data.append([int(year), float(fires), float(gdp)])
+
+    return data
+
+
 

@@ -97,7 +97,7 @@ class TestGetFireGDPYearData(unittest.TestCase):
 
         data = fire_gdp.get_fire_gdp_year_data(co2file, GDPfile, "Afghanistan")
         comparison = [[2002, 0.0557, 178756]]
-        self.assertAlmostEqual(data, comparison)
+        self.assertEqual(data, comparison)
 
 
 
