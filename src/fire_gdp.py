@@ -18,6 +18,9 @@ def get_data(file_name,
 
         results = []
 
+        if return_header:
+            results.append(header)
+
         for row in reader:
             if query_column is not None and row[query_column] != query_value:
                 continue
