@@ -1,8 +1,22 @@
+import csv
+
 def get_data(file_name,
              query_column=None,
              query_value=None,
              return_header=False):
-    pass
+
+    with open(file_name, mode='r', encoding='utf-8', newline='') as file:
+
+        reader = csv.reader(file)
+
+        header = next(reader)
+
+        results = []
+
+        for row in reader:
+            results.append(row)
+    
+    return results
 
 def get_column_index(header, column_name):
 
