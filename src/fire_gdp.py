@@ -9,6 +9,9 @@ def get_column_index(header, column_name):
     if not isinstance(column_name, str):
         raise TypeError("Column Name must be string")
 
+    if not isinstance(header, list):
+        raise TypeError("Header Name must be list")
+
     return header.index(column_name)
 
 
