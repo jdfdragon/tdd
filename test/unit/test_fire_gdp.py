@@ -15,20 +15,20 @@ import fire_gdp
 
 class TestGetColumnIndex(unittest.TestCase):
 
-    def test_func_present(self):
+    def test_funcPresent(self):
         self.assertRaises(TypeError, fire_gdp.get_column_index)
 
-    def test_name_present(self):
+    def test_namePresent(self):
         header_list = ['a', 'b', 'c', 'd']
         r = fire_gdp.get_column_index(header_list, 'b')
         self.assertEqual(r, 1)
 
-    def test_name_absent(self):
+    def test_nameAbsent(self):
         header_list = ['a', 'b', 'c', 'd']
         self.assertRaises(TypeError, fire_gdp.get_column_index, 
                           header_list, None)
 
-    def test_header_absent(self):
+    def test_headerAbsent(self):
         self.assertRaises(TypeError, fire_gdp.get_column_index,
                           None, 'a')
 
@@ -36,12 +36,13 @@ class TestGetColumnIndex(unittest.TestCase):
 
 class TestGetData(unittest.TestCase):
 
-    def test_func_present(self):
+    def test_funcPresent(self):
         self.assertRaises(TypeError, fire_gdp.get_data)
+
 
 class TestGetFireGDPYearData(unittest.TestCase):
 
-    def test_func_present(self):
+    def test_funcPresent(self):
         self.assertRaises(TypeError, fire_gdp.get_fire_gdp_year_data)
 
 
