@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt  # noqa
 
 
 def create_plot(x_values, y_values, title, x_label, y_label):
-    
+
     fig, ax = plt.subplots()
 
     ax.scatter(x_values, y_values)
@@ -22,7 +22,7 @@ def create_plot(x_values, y_values, title, x_label, y_label):
 
 
 def save_plot(fig, out_file):
-    
+
     try:
         fig.savefig(out_file, bbox_inches="tight")
     finally:
