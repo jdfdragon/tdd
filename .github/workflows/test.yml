@@ -27,7 +27,7 @@ jobs:
             environment-file: environment.yml
             init-shell: bash
         - run: |
-            python -m unittest tdd/test/unit/test_fire_gdp.py
+            python tdd/test/unit/test_fire_gdp.py
           shell: bash -l {0}
     run_scatter_test:
         runs-on: ubuntu-latest
@@ -38,7 +38,7 @@ jobs:
             environment-file: environment.yml
             init-shell: bash
         - run: |
-            python -m unittest tdd/test/unit/test_scatter.py
+            python tdd/test/unit/test_scatter.py
           shell: bash -l {0}
     run_function_test:
         runs-on: ubuntu-latest
