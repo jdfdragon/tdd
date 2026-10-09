@@ -1,12 +1,14 @@
 import os
 import sys
 import unittest
+from pathlib import Path
 
-module_path = os.path.abspath(".")
+test_dir = Path(__file__).resolve().parent
 
-sys.path.append(module_path)
+# Navigate to tdd/src
+src_dir = test_dir.parent.parent / "src"
 
-sys.path.append("orig/src")
+sys.path.insert(0, str(src_dir))
 
 import fire_gdp 
 
@@ -14,7 +16,8 @@ import fire_gdp
 class TestGetColumnIndex(unittest.TestCase):
 
     def test_name_present(self):
-        pass
+        self.assertRaises(TypeError, fire_gdp.get_column_index)
+
 
 
 
