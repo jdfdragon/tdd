@@ -15,10 +15,18 @@ import fire_gdp
 
 class TestGetColumnIndex(unittest.TestCase):
 
-    def test_name_present(self):
+    def test_func_present(self):
         self.assertRaises(TypeError, fire_gdp.get_column_index)
 
+class TestGetData(unittest.TestCase):
 
+    def test_func_present(self):
+        self.assertRaises(TypeError, fire_gdp.get_data)
+
+class TestGetFireGDPYearData(unittest.TestCase):
+
+    def test_func_present(self):
+        self.assertRaises(TypeError, fire_gdp.get_fire_gdp_year_data)
 
 
 if __name__ == '__main__':
