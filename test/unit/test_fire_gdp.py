@@ -57,6 +57,17 @@ class TestGetData(unittest.TestCase):
         columns = len(data[0])
         self.assertEqual([rows, columns], [2, 74])
 
+    def test_query(self):
+        file = Path(__file__).resolve().parent.parent / "data" / "testAgroFood.csv"
+        
+        data = fire_gdp.get_data(file, 0, "Afghanistan")
+
+        rows = len(data)
+        columns = len(data[0])
+        self.assertEqual([rows, columns], [3, 31])
+
+
+
 
 class TestGetFireGDPYearData(unittest.TestCase):
 
