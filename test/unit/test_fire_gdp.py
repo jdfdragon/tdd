@@ -74,6 +74,17 @@ class TestGetData(unittest.TestCase):
         file = Path(__file__).resolve().parent.parent / "data" / "testAgroFood.csv"
         self.assertRaises(ValueError, fire_gdp.get_data, file, 0)
 
+    def test_header(self):
+        file = Path(__file__).resolve().parent.parent / "data" / "testAgroFood.csv"
+
+        data = fire_gdp.get_data(file, header=True)
+
+        rows = len(data)
+        columns = len(data[0])
+        example = data[0][2]
+        self.assertEqual([rows, columns, example], [7, 31, "Savanna fires"])
+
+
 
 class TestGetFireGDPYearData(unittest.TestCase):
 
