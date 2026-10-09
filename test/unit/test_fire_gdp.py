@@ -66,6 +66,10 @@ class TestGetData(unittest.TestCase):
         columns = len(data[0])
         self.assertEqual([rows, columns], [3, 31])
 
+    def test_noColumn(self):
+        file = Path(__file__).resolve().parent.parent / "data" / "testAgroFood.csv"
+        self.assertRaises(ValueError, fire_gdp.get_data, file, None, "Afghanistan")
+
 
 
 
