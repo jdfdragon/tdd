@@ -14,6 +14,9 @@ def get_data(file_name,
         results = []
 
         for row in reader:
+            if query_column is not None and row[query_column] != query_value:
+                continue
+
             results.append(row)
     
     return results
