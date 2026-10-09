@@ -8,11 +8,11 @@ from scatter import create_plot, save_plot
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = PROJECT_ROOT / "test" / "data"
+DATA_DIR = PROJECT_ROOT / "data"
 
 
 def parse_arguments():
-    """Parse command-line arguments."""
+    
     parser = argparse.ArgumentParser(
         description="Plot GDP against forest fires."
     )
