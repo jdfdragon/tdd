@@ -14,7 +14,7 @@ DATA_DIR = PROJECT_ROOT / "data"
 def parse_arguments():
     
     parser = argparse.ArgumentParser(
-        description="Plot GDP against forest fires."
+        description="Plot any of GDP, CO2 from Fires, and Year."
     )
 
     parser.add_argument(
@@ -27,14 +27,14 @@ def parse_arguments():
     parser.add_argument(
         "--co2",
         type=Path,
-        default=DATA_DIR / "testAgroFood.csv",
+        default=DATA_DIR / "AgroFood_co2_emission",
         help="Forest fire data CSV."
     )
 
     parser.add_argument(
         "--gdp",
         type=Path,
-        default=DATA_DIR / "testIMF.csv",
+        default=DATA_DIR / "IMF_GDP.csv",
         help="GDP data CSV."
     )
 
@@ -44,27 +44,54 @@ def parse_arguments():
         help="Country to plot."
     )
 
+    parser.add_argument(
+            "--axisX",
+            choices=["year", "fires", "gdp"],
+            default="year",
+            help="X Axis to plot."
+        )
+
+    parser.add_argument(
+                "--axisY",
+                choices=["year", "fires", "gdp"],
+                default="fires",
+                help="Y Axis to plot."
+            )
+
     return parser.parse_args()
 
 
 def prepare_data(rows):
     """Convert year, fire, GDP rows into plot coordinates."""
-    gdp_values = []
-    fire_values = []
+    years = []
+    fires = []
+    gdps = []
 
-    for year, fires, gdp in rows:
-        gdp_values.append(float(gdp))
-        fire_values.append(float(fires))
+    for year, fire, gdp in rows:
+        years.append(year)
+        fires.append(fire)
+        gdps.append(gdp)
 
-    if not gdp_values:
+    if not gdps:
         raise ValueError("No data available to plot.")
 
-    return gdp_values, fire_values
+    return [years, fires, gdps]
 
 
 def main():
-    """Generate the GDP vs forest fires plot."""
+    """Generate plot."""
     args = parse_arguments()
+
+    column_indices = {
+    "year": 0,
+    "fires": 1,
+    "gdp": 2
+    }
+
+    titles = ["Year", "CO2 Due To Fires", "GDP"]
+
+    x_axis = column_indices[args.axisX]
+    y_axis = column_indices[args.axisY]
 
     try:
         rows = get_fire_gdp_year_data(
@@ -73,14 +100,19 @@ def main():
             args.country
         )
 
-        x_values, y_values = prepare_data(rows)
+        data = prepare_data(rows)
+
+        x_vals = data[x_axis]
+        y_vals = data[y_axis]
+
+
 
         fig = create_plot(
-            x_values,
-            y_values,
-            f"GDP vs Forest Fires: {args.country}",
-            "GDP",
-            "Forest Fires"
+            x_vals,
+            y_vals,
+            f"{titles[x_axis]} vs {titles[y_axis]}: {args.country}",
+            titles[x_axis],
+            titles[y_axis]
         )
 
         save_plot(fig, args.out)
