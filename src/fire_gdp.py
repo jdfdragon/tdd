@@ -6,6 +6,9 @@ def get_data(file_name,
 
 def get_column_index(header, column_name):
 
+    if not isinstance(column_name, str):
+        raise TypeError("Column Name must be string")
+
     return header.index(column_name)
 
 
