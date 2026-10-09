@@ -18,6 +18,12 @@ class TestGetColumnIndex(unittest.TestCase):
     def test_func_present(self):
         self.assertRaises(TypeError, fire_gdp.get_column_index)
 
+    def test_name_present(self):
+        header_list = ['a', 'b', 'c', 'd']
+        r = fire_gdp.get_column_index(header_list, 'b')
+        self.assertEqual(r, 1)
+
+
 class TestGetData(unittest.TestCase):
 
     def test_func_present(self):
