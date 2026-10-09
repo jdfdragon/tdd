@@ -91,6 +91,17 @@ class TestGetFireGDPYearData(unittest.TestCase):
     def test_funcPresent(self):
         self.assertRaises(TypeError, fire_gdp.get_fire_gdp_year_data)
 
+    def test_main(self):
+        co2file = Path(__file__).resolve().parent.parent / "data" / "testAgroFood.csv"
+        GDPfile = Path(__file__).resolve().parent.parent / "data" / "testIMF.csv"
+
+        data = fire_gdp.get_fire_gdp_year_data(co2file, GDPfile, "Afghanistan")
+        comparison = [[2002, 0.0557, 178756]]
+        self.assertAlmostEqual(data, comparison)
+
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
