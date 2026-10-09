@@ -1,5 +1,6 @@
 import csv
 
+
 def get_data(file_name,
              query_column=None,
              query_value=None,
@@ -7,7 +8,7 @@ def get_data(file_name,
 
     if (query_column is None) != (query_value is None):
         raise ValueError(
-            "query_column and query_value must both be provided or both be None"
+            "query_column and query_value must both be provided or None"
         )
 
     with open(file_name, mode='r', encoding='utf-8', newline='') as file:
@@ -26,8 +27,9 @@ def get_data(file_name,
                 continue
 
             results.append(row)
-    
+
     return results
+
 
 def get_column_index(header, column_name):
 
@@ -61,6 +63,3 @@ def get_fire_gdp_year_data(co2_file, gdp_file, country):
             data.append([int(year), float(fires), float(gdp)])
 
     return data
-
-
-
