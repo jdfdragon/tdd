@@ -28,6 +28,10 @@ class TestGetColumnIndex(unittest.TestCase):
         self.assertRaises(TypeError, fire_gdp.get_column_index, 
                           header_list, None)
 
+    def test_header_absent(self):
+        self.assertRaises(TypeError, fire_gdp.get_column_index,
+                          None, 'a')
+
 
 
 class TestGetData(unittest.TestCase):
