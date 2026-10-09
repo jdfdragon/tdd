@@ -8,7 +8,6 @@ from scatter import create_plot, save_plot
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = PROJECT_ROOT / "data"
 
 
 def parse_arguments():
@@ -27,14 +26,14 @@ def parse_arguments():
     parser.add_argument(
         "--co2",
         type=Path,
-        default=DATA_DIR / "AgroFood_co2_emission",
+        default=PROJECT_ROOT / "data" / "AgroFood_co2_emission",
         help="Forest fire data CSV."
     )
 
     parser.add_argument(
         "--gdp",
         type=Path,
-        default=DATA_DIR / "IMF_GDP.csv",
+        default=PROJECT_ROOT / "data" / "IMF_GDP.csv",
         help="GDP data CSV."
     )
 
