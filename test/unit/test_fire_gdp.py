@@ -5,7 +5,6 @@ from pathlib import Path
 
 test_dir = Path(__file__).resolve().parent
 
-# Navigate to tdd/src
 src_dir = test_dir.parent.parent / "src"
 
 sys.path.insert(0, str(src_dir))
