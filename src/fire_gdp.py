@@ -5,6 +5,11 @@ def get_data(file_name,
              query_value=None,
              return_header=False):
 
+    if (query_column is None) != (query_value is None):
+        raise ValueError(
+            "query_column and query_value must both be provided or both be None"
+        )
+
     with open(file_name, mode='r', encoding='utf-8', newline='') as file:
 
         reader = csv.reader(file)
