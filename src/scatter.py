@@ -1,28 +1,29 @@
-import sys
-import numpy as np
 import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 
-data_file = sys.argv[1]
-out_file = sys.argv[2]
-title = sys.argv[3]
-x=sys.argv[4]
-y=sys.argv[5]
+matplotlib.use("Agg")
 
-X = []
-Y = []
-for l in open(data_file):
-    A = l.rstrip().split()
-    X.append(float(A[0]))
-    Y.append(float(A[1]))
+import matplotlib.pyplot as plt  # noqa
 
-fig, ax = plt.subplots()
-ax.scatter(X,Y)
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.set_xlabel(x)
-ax.set_ylabel(y)
-ax.set_title(title)
 
-plt.savefig(out_file,bbox_inches='tight')
+def create_plot(x_values, y_values, title, x_label, y_label):
+    
+    fig, ax = plt.subplots()
+
+    ax.scatter(x_values, y_values)
+
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    ax.set_xlabel(x_label)
+    ax.set_ylabel(y_label)
+    ax.set_title(title)
+
+    return fig
+
+
+def save_plot(fig, out_file):
+    
+    try:
+        fig.savefig(out_file, bbox_inches="tight")
+    finally:
+        plt.close(fig)
