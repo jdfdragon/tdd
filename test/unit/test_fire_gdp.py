@@ -23,6 +23,12 @@ class TestGetColumnIndex(unittest.TestCase):
         r = fire_gdp.get_column_index(header_list, 'b')
         self.assertEqual(r, 1)
 
+    def test_name_absent(self):
+        header_list = ['a', 'b', 'c', 'd']
+        self.assertRaises(TypeError, fire_gdp.get_column_index, 
+                          header_list, None)
+
+
 
 class TestGetData(unittest.TestCase):
 
