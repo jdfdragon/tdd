@@ -39,6 +39,13 @@ class TestGetData(unittest.TestCase):
     def test_funcPresent(self):
         self.assertRaises(TypeError, fire_gdp.get_data)
 
+    def test_namePresent(self):
+        file = "../test/data/testAgroFood.csv"
+        data = fire_gdp.get_data(file)
+        rows = len(data)
+        columns = len(data[0])
+        self.assertEqual([rows, columns], [6, 31])
+
 
 class TestGetFireGDPYearData(unittest.TestCase):
 
