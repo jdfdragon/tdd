@@ -1,6 +1,9 @@
 COUNTRIES = {"spain": "Spain",
              "brazil": "Brazil",
-             "korea": "Republic of Korea"}
+             "korea": "Republic of Korea",
+             "uzbekistan": "Uzbekistan",
+             "ethiopia": "Ethiopia"
+}
 GRAPHS = {
     "fires_time": ("year", "fires"),
     "gdp_time": ("year", "gdp"),
