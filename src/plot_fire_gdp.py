@@ -26,7 +26,7 @@ def parse_arguments():
     parser.add_argument(
         "--co2",
         type=Path,
-        default=PROJECT_ROOT / "data" / "AgroFood_co2_emission",
+        default=PROJECT_ROOT / "data" / "AgroFood_co2_emission.csv",
         help="Forest fire data CSV."
     )
 
