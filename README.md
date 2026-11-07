@@ -1,4 +1,4 @@
-# Test-Driven Development Sample
+# Test-Driven Development Sample (Version 2.0)
 
 This repository is meant to demonstrate the power of test driven development by creating a data visualization tool for 2 data sets: Agrofood CO2 Emission and Country GDP curated by the IMF.
 
@@ -9,16 +9,30 @@ curl -L "https://docs.google.com/uc?export=download&id=1AsXP_OGs1O_TDeXiZjk3fYV1
 curl -L "https://docs.google.com/uc?export=download&id=19YEPysdnK7VCXuAe9Og9pwYkNT5CbQzr" -o data/IMF_GDP.csv
 ```
 
+### New in 2.0
+
+To run the analysis, newly added Snakemake functionality allows simplified running. To generate the graphs used in this project, run
+
+```
+snakemake --cores 4
+```
+
+which will automatically download the relevant datasets and reproduce graphs in this analysis.
+
 ## Usage
 
 To run your own analysis of the data, first download the files above and place them in a "data" directory within the main repo. Then, use the following syntax within the main repo to generate plots:
 
-'''
+```
 python src/plot_fire_gdp.py --out "path/to/gen/image" \
 --co2 "path/to/emission/file" --gdp "path/to/gdp/file" \
 --country "Country" --axisX {one of}['year', 'fires', 'gdp'] \
 --axisY {one of}['year', 'fires', 'gdp']
-'''
+```
+
+## Avenues for Testing
+
+Since snakemake runs as a shell script, such a file could very easily be tested as a github workflow. There are already easy ways to test to see if files have been created from a bash script, and on a researcher's computer the entire workflow should not run everytime; that is kind of the point of snakemake. Therefore, on a clean Linux install, simply running the snakemake file and monitoring the output should be a good way to test the workflow.
 
 ## Analysis
 
@@ -45,12 +59,37 @@ Even though we couldn't compare the scales of GDP between countries, we can comp
 
 Finally, a comparison between CO2 emissions and GDP. There is no obvious pattern from the data. I organized it as such because GDP monotonically increases for two of the countries we are comparing, making the graphs look similar to our Fires vs Time charts. There may be a slight decline in emissions in Brazil, but GDP may not be the leading cause. Reductions in the number of forrests and global environmental regulations may impact these numbers. While increasing GDP may increase the efficacy of the local forest service to fight and control fires, it is not strongly supported from the data here that there is a causal link. Korea has no link between fires and GDP, but the small penninsula's low surface area leads to high variance in the number of fires per year, obscuring data. While Spain shows a clear correlation between CO2 emissions from fires and GDP, it also is the only country to experience an economic downturn in the timeframe given. Comparing the Emissions vs Time and Emissions vs GDP presents a stronger case that Time is the key variable to reducing fires, not wealth. If there was a direct causal link, we would expect a jump in CO2 emissions around 2008, which we do not see.
 
+## Analysis Part 2
+
+![Uzbekistan, GDP vs Time](images/uzbekistan_gdp_time.png)
+![Ethiopia, GDP vs Time](images/ethiopia_gdp_time.png)
+
+This time, I went farther down the PPP list to Uzbekistan and Ethiopia, two countries in very different parts of the world, to see if we can spot a pattern between GDP and CO2 emissions from fires in different types of countries. It appears that both countries have undergone dramatic economic expansions in local terms, so perhaps we will be able to spot patterns in the data.
+
+![Uzbekistan, CO2 from Fires vs Time](images/uzbekistan_fires_time.png)
+![Ethiopia, CO2 from Fires vs Time](images/ethiopia_fires_time.png)
+
+However, the fires analysis tells a different story. Uzbek data is apparently missing; perhaps a quirk of reporting, political instability, or simply because the highly landlocked nation does not have enough forests to count towards the forest fires category. Ethiopia, coneversly, reports as if from a uniform distribution with the exception of an early outlier.
+
+![Uzbekistan, CO2 from Fires vs GDP](images/uzbekistan_fires_gdp.png)
+![Ethiopia, CO2 from Fires vs GDP](images/ethiopia_fires_gdp.png)
+
+The weirdness with the emissions data means that there are no visible trends in our Emissions vs GDP graphs. 
+
 ## Methods
 
 To generate the plots listed, I used the following code workflow. The workflow for Brazil is presented here, and generating the other plots is entirely analogous.
 
-'''
+```
 python src/plot_fire_gdp.py --out brazil_gdp_time.png --axisX "year" --axisY "gdp" --country "Brazil"
 python src/plot_fire_gdp.py --out brazil_fires_time.png --axisX "year" --axisY "fires" --country "Brazil"
 python src/plot_fire_gdp.py --out brazil_fires_gdp.png --axisX "gdp" --axisY "fires" --country "Brazil"
-'''
+```
+
+### New in 2.0
+
+To perfectly reprodce the workflow above, run
+
+```
+snakemake --cores 4
+```

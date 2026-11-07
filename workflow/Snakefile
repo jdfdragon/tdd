@@ -1,0 +1,63 @@
+COUNTRIES = {"spain": "Spain",
+             "brazil": "Brazil",
+             "korea": "Republic of Korea",
+             "uzbekistan": "Uzbekistan",
+             "ethiopia": "Ethiopia"
+}
+GRAPHS = {
+    "fires_time": ("year", "fires"),
+    "gdp_time": ("year", "gdp"),
+    "fires_gdp": ("gdp", "fires")
+}
+
+rule all:
+    input: 
+        expand("images/{country}_{graph}.png",
+               country=COUNTRIES.keys(),
+               graph=GRAPHS.keys()
+               )
+
+rule get_co2:
+    output:
+        'data/Agrofood_co2_emission.csv'
+    shell:
+        """
+        mkdir -p data
+        curl -fL \
+            "https://docs.google.com/uc?export=download&id=1AsXP_OGs1O_TDeXiZjk3fYV1SrG4vwXF" \
+            -o {output:q}
+        """
+
+rule get_gdp:
+    output:
+        'data/IMF_GDP.csv'
+    shell:
+        """
+        mkdir -p data
+        curl -fL \
+            "https://docs.google.com/uc?export=download&id=19YEPysdnK7VCXuAe9Og9pwYkNT5CbQzr" \
+            -o {output:q}
+        """
+
+rule make_plots:
+    input:
+        co2='data/Agrofood_co2_emission.csv',
+        gdp='data/IMF_GDP.csv'
+    output:
+        "images/{country}_{graph}.png"
+    wildcard_constraints:
+        country="|".join(COUNTRIES.keys())
+    params:
+        axisX=lambda wildcards: GRAPHS[wildcards.graph][0],
+        axisY=lambda wildcards: GRAPHS[wildcards.graph][1],
+        country=lambda wildcards: COUNTRIES[wildcards.country]
+    shell:
+        """
+        python src/plot_fire_gdp.py \
+            --co2 {input.co2:q} \
+            --gdp {input.gdp:q} \
+            --country {params.country:q} \
+            --axisX {params.axisX} \
+            --axisY {params.axisY} \
+            --out {output:q}
+        """
