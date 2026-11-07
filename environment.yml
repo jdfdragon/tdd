@@ -1,8 +1,14 @@
 name: swe4s
 channels:
+  - bioconda
   - conda-forge
 dependencies:
-  - python
-  - pycodestyle
+  - graphviz
   - matplotlib
-prefix: /Users/theurdragon/miniforge3/envs/swe4s
+  - numpy
+  - pandas
+  - pycodestyle
+  - python
+  - snakemake
+
+prefix: "/Users/theurdragon/miniforge3/envs/swe4s"
